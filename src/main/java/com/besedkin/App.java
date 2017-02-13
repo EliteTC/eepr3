@@ -9,20 +9,21 @@ public class App {
 		 ApplicationContext context = 
 	             new ClassPathXmlApplicationContext("Beans.xml");
 
-	      Message obj = (Message) context.getBean("message");
+	      Message obj = (Message) context.getBean(Message.class);
 
 	      obj.getMessage();
 	      obj.setMessage("Set new message for 1st obj");
 	      obj.getMessage();
 	      
-	      Message obj2 = (Message) context.getBean("message2");
+	      Message obj2 = (Message) context.getBean(Message.class);
 	      obj2.getMessage();
 	      
-	      Message obj3 = (Message) context.getBean("message3");
+	      Message obj3 = (Message) context.getBean(Message.class);
 	      obj3.getMessage();
 	      
-	      Message obj4 = (Message) context.getBean("message4");
+	      Message obj4 = (Message) context.getBean(Message.class);
 	      obj4.getNotes();
+	      
 	}
 
 }

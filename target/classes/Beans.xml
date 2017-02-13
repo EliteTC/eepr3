@@ -1,36 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-	
-   <bean id="note" class="com.besedkin.Note" scope="prototype">
-   	<property name="title" value="1st note title"/>
-   	<property name="text" value="1st note text"/>
-   </bean>
-   <bean id="note2" class="com.besedkin.Note" scope="prototype">
-   	<property name="title" value="2nd note title"/>
-   	<property name="text" value="2nd note text"/>
-   </bean>
-   <bean id="message" class="com.besedkin.Message" >
-      
-   </bean>
-   
-   <bean id="message2" class="com.besedkin.Message">
-       <constructor-arg value = "Passed message parameter"/>
-   </bean>
-   
-	<bean id="message3" class="com.besedkin.Message" >
-      <property name="message" value="field injection in bean"/>
-   </bean>
-   
-   <bean id="message4" class="com.besedkin.Message" >
-      <property name="notes">
-     	 <list>
-      		<ref bean="note"/>
-      		<ref bean="note2"/>
-     	 </list>
-      </property>
-   </bean>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.besedkin"/>
+
+<!-- 
+	<bean id="note" class="com.besedkin.Note" scope="prototype">
+		<property name="title" value="1st note title" />
+		<property name="text" value="1st note text" />
+	</bean>
+	<bean id="note2" class="com.besedkin.Note" scope="prototype">
+		<property name="title" value="2nd note title" />
+		<property name="text" value="2nd note text" />
+	</bean>
+	<bean id="message" class="com.besedkin.Message">
+
+	</bean>
+
+	<bean id="message2" class="com.besedkin.Message">
+		<constructor-arg value="Passed message parameter" />
+	</bean>
+
+	<bean id="message3" class="com.besedkin.Message">
+		<property name="message" value="field injection in bean" />
+	</bean>
+
+	<bean id="message4" class="com.besedkin.Message">
+		<property name="notes">
+			<list>
+				<ref bean="note" />
+				<ref bean="note2" />
+			</list>
+		</property>
+	</bean>
+	 -->
 </beans>
