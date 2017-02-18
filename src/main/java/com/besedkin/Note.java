@@ -33,6 +33,10 @@ public class Note {
 	public void setText(String text) {
 		this.text = text;
 	}
+	public Note createNote(Note note){
+		return note;
+		
+	}
 	
 
 }

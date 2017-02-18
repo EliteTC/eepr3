@@ -8,13 +8,16 @@ public class App {
 	public static void main(String[] args) {
 		 ApplicationContext context = 
 	             new ClassPathXmlApplicationContext("Beans.xml");
-
-	      Message obj = (Message) context.getBean(Message.class);
+		 WriterStuffXML writer = (WriterStuffXML) context.getBean("writer");
+	    WriterStuffAnnotated wr = context.getBean(WriterStuffAnnotated.class);
+		 Message obj = (Message) context.getBean(Message.class);
 
 	      obj.getMessage();
 	      obj.setMessage("Set new message for 1st obj");
 	      obj.getMessage();
 	      
+	      writer.getNote();
+	      wr.getNote();
 	      Message obj2 = (Message) context.getBean(Message.class);
 	      obj2.getMessage();
 	      
@@ -23,6 +26,9 @@ public class App {
 	      
 	      Message obj4 = (Message) context.getBean(Message.class);
 	      obj4.getNotes();
+	      
+	      
+	     
 	      
 	}
 

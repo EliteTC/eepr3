@@ -8,36 +8,29 @@
     http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.besedkin"/>
+	<context:component-scan base-package="com.besedkin" />
+	<aop:aspectj-autoproxy />
+	<bean id="writer" class="com.besedkin.WriterStuffXML" />
 
-<!-- 
-	<bean id="note" class="com.besedkin.Note" scope="prototype">
-		<property name="title" value="1st note title" />
-		<property name="text" value="1st note text" />
-	</bean>
-	<bean id="note2" class="com.besedkin.Note" scope="prototype">
-		<property name="title" value="2nd note title" />
-		<property name="text" value="2nd note text" />
-	</bean>
-	<bean id="message" class="com.besedkin.Message">
+	<aop:aspect ref="writer">
+		<aop:pointcut
+			expression="execution(* com.besedkin.Message.setMessage(String)) and args(note)"
+			id="noting" />
+		<aop:before method="prepareNotePad" pointcut-ref="noting"
+			arg-names="note" />
+		<aop:after method="writeDownNote" pointcut-ref="noting"
+			arg-names="note" />
+	</aop:aspect>
 
-	</bean>
 
-	<bean id="message2" class="com.besedkin.Message">
-		<constructor-arg value="Passed message parameter" />
-	</bean>
-
-	<bean id="message3" class="com.besedkin.Message">
-		<property name="message" value="field injection in bean" />
-	</bean>
-
-	<bean id="message4" class="com.besedkin.Message">
-		<property name="notes">
-			<list>
-				<ref bean="note" />
-				<ref bean="note2" />
-			</list>
-		</property>
-	</bean>
-	 -->
+	<!-- <bean id="note" class="com.besedkin.Note" scope="prototype"> <property 
+		name="title" value="1st note title" /> <property name="text" value="1st note 
+		text" /> </bean> <bean id="note2" class="com.besedkin.Note" scope="prototype"> 
+		<property name="title" value="2nd note title" /> <property name="text" value="2nd 
+		note text" /> </bean> <bean id="message" class="com.besedkin.Message"> </bean> 
+		<bean id="message2" class="com.besedkin.Message"> <constructor-arg value="Passed 
+		message parameter" /> </bean> <bean id="message3" class="com.besedkin.Message"> 
+		<property name="message" value="field injection in bean" /> </bean> <bean 
+		id="message4" class="com.besedkin.Message"> <property name="notes"> <list> 
+		<ref bean="note" /> <ref bean="note2" /> </list> </property> </bean> -->
 </beans>
